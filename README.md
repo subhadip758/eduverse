@@ -13,7 +13,7 @@ Eduverse is a modern, interactive educational platform designed to enhance the l
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React, TypeScript, Vite
+- **Frontend**: React, TypeScript, Vite, Java
 - **Backend Services**: Firebase (Authentication & Database), Spring Boot (Java)
 - **Styling**: Modern CSS/Tailwind (Project dependent)
 
