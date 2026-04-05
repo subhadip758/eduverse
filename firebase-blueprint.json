@@ -1,0 +1,87 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Base user entity for authentication and role management.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Firebase Auth UID" },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "teacher", "student", "parent"] },
+        "status": { "type": "string", "enum": ["active", "suspended"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Student": {
+      "title": "Student",
+      "description": "Detailed student profile.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "studentId": { "type": "string" },
+        "courseId": { "type": "string" },
+        "batch": { "type": "string" },
+        "attendance": { "type": "number" },
+        "gpa": { "type": "number" },
+        "riskLevel": { "type": "string", "enum": ["low", "medium", "high"] }
+      }
+    },
+    "Teacher": {
+      "title": "Teacher",
+      "description": "Detailed teacher profile.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "employeeId": { "type": "string" },
+        "department": { "type": "string" },
+        "subjects": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "Course": {
+      "title": "Course",
+      "description": "Academic course definition.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "duration": { "type": "string" },
+        "fee": { "type": "number" }
+      }
+    },
+    "Attendance": {
+      "title": "Attendance",
+      "description": "Daily attendance record.",
+      "type": "object",
+      "properties": {
+        "studentId": { "type": "string" },
+        "date": { "type": "string", "format": "date" },
+        "status": { "type": "string", "enum": ["present", "absent", "late"] },
+        "courseId": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{uid}": {
+      "schema": "User",
+      "description": "User profiles and roles."
+    },
+    "/students/{uid}": {
+      "schema": "Student",
+      "description": "Student academic details."
+    },
+    "/teachers/{uid}": {
+      "schema": "Teacher",
+      "description": "Teacher professional details."
+    },
+    "/courses/{id}": {
+      "schema": "Course",
+      "description": "Available courses."
+    },
+    "/attendance/{id}": {
+      "schema": "Attendance",
+      "description": "Attendance logs."
+    }
+  }
+}
