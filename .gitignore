@@ -6,3 +6,8 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Java
+*.class
+target/
+com/
